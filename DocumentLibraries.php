@@ -4,7 +4,9 @@ class DocumentLibraries {
     function __construct() {
         add_action('init', array($this, 'add_custom_post_type'));
         add_shortcode('library', array($this, 'library_shortcode'));
+        add_shortcode('library_link', array($this, 'library_link_shortcode'));
         add_action('wp_enqueue_scripts', array($this, 'add_style'));
+        add_action( 'admin_enqueue_scripts', array($this, 'disable_drafts'));
     }
     
     function add_custom_post_type() {
@@ -51,7 +53,17 @@ class DocumentLibraries {
             $query = new WP_Query($args);
             while ($query->have_posts()) {
                 $query->the_post();
-                the_content();
+                //the_content();
+                $media = get_children(array(
+                    'post_parent' => get_the_ID(),
+                    'post_type' => 'attachment'
+                ));
+                foreach($media as $singleAttachment) {
+                    ?>
+                    <a href="<?php echo $singleAttachment->guid ?>"><?php echo $singleAttachment->post_title; ?></a>
+                    <?php
+                    
+                }
             }
             wp_reset_query();
             wp_reset_postdata();
@@ -65,10 +77,34 @@ class DocumentLibraries {
         
     }
     
+    function library_link_shortcode($atts) {
+        $a = shortcode_atts( array(
+            'name' => 'empty',
+        ), $atts );
+        if ($a['name'] == 'empty') {
+            return;
+        } else {
+            $args = array(
+                'post_type' => 'libraries',
+                'name' => $a['name']
+            );
+            $query = new WP_Query($args);
+            while ($query->have_posts()) {
+                $query->the_post();
+                $content = '<strong><a href="' . get_permalink() . '">' . get_the_title() . '</a></strong>';
+            }
+            return $content;
+        }
+    }
+    
     function add_style() {
         wp_register_style( 'library-style', plugins_url( 'css/library_style.css', __FILE__ ) );
         wp_enqueue_style('library-style');
     }
     
+    function disable_drafts() {
+        if ( 'libraries' == get_post_type() )
+        wp_dequeue_script( 'autosave' );
+    }
 }
 ?>
