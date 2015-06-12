@@ -53,6 +53,10 @@ class DocumentLibraries {
             $query = new WP_Query($args);
             while ($query->have_posts()) {
                 $query->the_post();
+                if (!has_post_thumbnail()) {
+                    //FIXME site-specific: remove upper margin if no thumbnail is present
+                    $container = '<div class="library-container" style="margin-top: 15px">';
+                }
                 //the_content();
                 $media = get_children(array(
                     'post_parent' => get_the_ID(),
@@ -76,7 +80,7 @@ class DocumentLibraries {
         }
         
     }
-    
+    // [library_link name="library-name"]
     function library_link_shortcode($atts) {
         $a = shortcode_atts( array(
             'name' => 'empty',
