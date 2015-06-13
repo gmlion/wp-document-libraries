@@ -7,25 +7,26 @@ class DocumentLibraries {
         add_shortcode('library_link', array($this, 'library_link_shortcode'));
         add_action('wp_enqueue_scripts', array($this, 'add_style'));
         add_action( 'admin_enqueue_scripts', array($this, 'disable_drafts'));
+        
     }
     
     function add_custom_post_type() {
         $labels = array(
-            'name'=>__('Libraries'),
-            'singular_name'=>__('Library'),
-            'add_new_item'=>__('Add new library'),
-            'edit_item'=>__('Modify library'),
-            'new_item'=>__('Add new library'),
-            'all_items'=>__('All libraries'),
-            'view_item'=>__('View library'),
-            'search_items'=>__('Search for library'),
-            'not_found'=>__('No library found'),
-            'menu_name'=>__('Libraries')
+            'name'=>__( 'Libraries', 'document_libraries' ),
+            'singular_name'=>__( 'Library', 'document_libraries' ),
+            'add_new_item'=>__( 'Add new library', 'document_libraries' ),
+            'edit_item'=>__( 'Modify library', 'document_libraries' ),
+            'new_item'=>__( 'Add new library', 'document_libraries' ),
+            'all_items'=>__( 'All libraries', 'document_libraries' ),
+            'view_item'=>__( 'View library', 'document_libraries' ),
+            'search_items'=>__( 'Search for library', 'document_libraries' ),
+            'not_found'=>__( 'No library found', 'document_libraries' ),
+            'menu_name'=>__( 'Libraries', 'document_libraries' )
         );
 
         $args = array(
             'labels'=>$labels,
-            'description'=>__('Libraries of documents'),
+            'description'=>__( 'Libraries of documents', 'document_libraries' ),
             'public'=>true,
             'exclude_from_search'=>true,
             'has_archive'=>false,
@@ -110,5 +111,6 @@ class DocumentLibraries {
         if ( 'libraries' == get_post_type() )
         wp_dequeue_script( 'autosave' );
     }
+
 }
 ?>
