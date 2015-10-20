@@ -7,7 +7,11 @@ class DocumentLibraries {
         add_shortcode('library_link', array($this, 'library_link_shortcode'));
         add_action('wp_enqueue_scripts', array($this, 'add_style'));
         add_action( 'admin_enqueue_scripts', array($this, 'disable_drafts'));
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> origin/master
     }
 
     function add_custom_post_type() {
@@ -63,6 +67,7 @@ class DocumentLibraries {
                     'post_parent' => get_the_ID(),
                     'post_type' => 'attachment'
                 ));
+<<<<<<< HEAD
 
                 foreach($media as $singleAttachment) {
                     ?>
@@ -83,6 +88,13 @@ class DocumentLibraries {
 
                     <?php
 
+=======
+                foreach($media as $singleAttachment) {
+                    ?>
+                    <a href="<?php echo $singleAttachment->guid ?>"><?php echo $singleAttachment->post_title; ?></a>
+                    <?php
+                    
+>>>>>>> origin/master
                 }
             }
             wp_reset_query();
@@ -116,12 +128,20 @@ class DocumentLibraries {
             return $content;
         }
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     function add_style() {
         wp_register_style( 'library-style', plugins_url( 'css/library_style.css', __FILE__ ) );
         wp_enqueue_style('library-style');
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> origin/master
     function disable_drafts() {
         if ( 'libraries' == get_post_type() )
         wp_dequeue_script( 'autosave' );
