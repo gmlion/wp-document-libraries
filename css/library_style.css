@@ -1,9 +1,16 @@
-.library-container a {
-  display: block;
-  height: 63px;
-  padding-left: 55px;
-  padding-top: 24px;
-  background: url("../images/document-icon.png") no-repeat;
-  margin: 5px 0 5px 0; }
+.library-container {
+  margin-top: 182px; }
+  .library-container a {
+    display: block;
+    height: 63px;
+    padding-left: 55px;
+    background: url("../images/document-icon.png") no-repeat;
+    margin: 5px 0 5px 0; }
+    .library-container a .library-link-container {
+      display: table-cell;
+      height: 63px;
+      vertical-align: middle; }
+      .library-container a .library-link-container .library-link-description {
+        color: #949599 !important; }
 
 /*# sourceMappingURL=library_style.css.map */

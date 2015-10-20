@@ -1,10 +1,19 @@
 .library-container {
+    margin-top: 182px;
     a {
         display: block;
         height: 63px;
         padding-left: 55px;
-        padding-top: 24px; 
+        //padding-top: 24px;
         background: url('../images/document-icon.png') no-repeat;
         margin: 5px 0 5px 0;
+        .library-link-container {
+          display: table-cell;
+          height: 63px;
+          vertical-align: middle;
+          .library-link-description {
+            color: #949599 !important;
+          }
+        }
     }
 }

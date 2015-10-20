@@ -20,5 +20,9 @@ require('DocumentLibraries.php');
 
 $_GLOBALS['document_libraries'] = new DocumentLibraries();
 
-
+function document_libraries_load_plugin_textdomain() {
+  load_plugin_textdomain( 'document_libraries', FALSE, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+ 
+add_action( 'plugins_loaded', 'document_libraries_load_plugin_textdomain' );
 ?>
